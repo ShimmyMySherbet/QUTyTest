@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO.Ports;
 using System.Text;
 using System.Threading;
@@ -165,6 +166,7 @@ namespace QUTyTest.Models
             }
             else if (message.Type == EMessageType.Ack || message.Type == EMessageType.Nack && _DiscardResponses > 0)
             {
+                Debug.WriteLine($"Discarded message: {message.Type} ({message.GetContent()})");
                 _DiscardResponses--;
                 return;
             }

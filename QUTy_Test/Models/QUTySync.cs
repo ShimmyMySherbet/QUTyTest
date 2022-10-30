@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System.Diagnostics;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace QUTyTest.Models
@@ -29,13 +30,15 @@ namespace QUTyTest.Models
                 Token.ThrowIfCancellationRequested();
                 SendSyncNonblocking();
             }
+            Debug.WriteLine("Exit Sync");
         }
 
         private void SendSyncNonblocking()
         {
             Task.Run(() =>
             {
-                Device.Write("\\\\s");
+                Debug.WriteLine("Send Sync");
+                Device.Write("\\\\y");
                 Device.Reader.DiscardNextAck();
             });
         }

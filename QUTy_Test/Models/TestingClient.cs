@@ -58,6 +58,10 @@ namespace QUTyTest.Models
 
             device.Reader.Start();
 
+            device.Sync.StartSync();
+
+            //await Task.Delay(1000000);   // Had this here to sync only
+
             foreach (var test in Tests)
             {
                 if (_TokenSource.IsCancellationRequested)
